@@ -31,7 +31,7 @@ Build and Run Instructions
 - Ensure you have a compatible web browser installed.
 - Open the home.html file in your web browser to view the prototype.
 - Interact with the app by hovering over tabs, using voice commands, and exploring various services.
-- 
+  
 # Conclusion
 Our MOI app prototype aims to bridge the accessibility gap for senior citizens and people of determination by providing a user-friendly interface and intuitive navigation options. Through careful design choices and thoughtful implementation of features, we believe our project can significantly enhance the digital experience for these user groups.
 
