@@ -1,0 +1,143 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.fixed-text {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+}
+.fixed-text p {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+
+
+.iphone-container {
+    position: relative;
+    width: 390px;
+    height: 844px;
+    background: linear-gradient(135deg, #2596be, #143f84, #39679b, #163877);
+    border: 1px solid #ccc;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.rectangle {
+    position: absolute;
+    left: 48px;
+    width: 80mm;
+    height: 10mm;
+    background-color: #ffffff;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 8px;
+    border-radius: 5px;
+}
+
+.rectangle-text {
+    color: #333333;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+.rectangle:nth-child(3) {
+    top: 250px;
+}
+.rectangle:nth-child(4) {
+    top: 310px;
+}
+.rectangle:nth-child(5) {
+    top: 370px;
+}
+.rectangle:nth-child(6) {
+    top: 430px;
+}
+.rectangle:nth-child(7) {
+    top: 490px;
+}
+.rectangle:nth-child(8) {
+    top: 550px;
+}
+
+.rectangle:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.content-container {
+    position: relative;
+    margin-top: 200px;
+}
+
+.next-button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.next-button-style {
+    padding: 10px 40px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.next-button-style:hover {
+    background-color: darkgreen;
+}
+
+.footer {
+    width: 100%;
+    background-color: #163877;
+    padding: 5px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+   width: 390px;
+    margin-left: calc(50% - 195px);
+   
+}
+
+.footer-button-grid {
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-button {
+    padding: 10px;
+    margin: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.footer-button img {
+    width: 20px;
+    height: 20px;
+}
+
+.footer-button:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}

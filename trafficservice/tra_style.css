@@ -1,0 +1,28 @@
+.star {
+    animation: blink-animation 1s infinite alternate;
+}
+
+@keyframes blink-animation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.circle:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.expanded {
+    font-size: 20px;
+}
+
+.step {
+    fill: #ffffff;
+    font-size: 14px;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}

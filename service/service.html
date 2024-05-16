@@ -1,0 +1,170 @@
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complex SVG avec application complète des filtres</title>
+    <link rel="stylesheet" type="text/css" href="service.css">
+    <style>
+        text {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            text-anchor: middle;
+            pointer-events: none; /* Prevent text from blocking hover events on circles */
+            opacity: 0; /* Initially hide the text */
+            transition: opacity 0.3s ease, font-size 0.3s ease; /* Add transition effect for opacity and font size change */
+            fill: black; /* Set text color to black */
+        }
+
+        circle {
+            fill: white; /* Set circle color to white */
+        }
+
+        circle:hover + text,
+        circle.touched + text {
+            opacity: 1; /* Show text when circle is hovered over or touched */
+        }
+
+        circle:hover {
+            opacity: 0.9; /* Make circle slightly transparent on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#4b6cb7;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#182848;stop-opacity:1" />
+            </linearGradient>
+            <filter id="blur">
+                <feGaussianBlur stdDeviation="3" />
+            </filter>
+            <filter id="turbulence">
+                <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="3" result="turbulence" />
+                <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="10" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <filter id="blend">
+                <feBlend mode="multiply" in="SourceGraphic" in2="BackgroundImage" />
+            </filter>
+            <filter id="colorMatrix">
+                <feColorMatrix type="matrix" values="0.33 0 0 0 0 0 0.33 0 0 0 0 0 0.33 0 0 0 0 0 1 0" />
+            </filter>
+            <filter id="componentTransfer">
+                <feComponentTransfer>
+                    <feFuncR type="linear" slope="1.5" intercept="-0.2" />
+                    <feFuncG type="linear" slope="1.2" intercept="-0.2" />
+                    <feFuncB type="linear" slope="1.5" intercept="-0.2" />
+                </feComponentTransfer>
+            </filter>
+            <filter id="convolveMatrix">
+                <feConvolveMatrix order="3" kernelMatrix="1 1 1 1 -7 1 1 1 1" />
+            </filter>
+            <filter id="diffuseLighting" x="0%" y="0%" width="100%" height="100%">
+                <feDiffuseLighting lighting-color="#ffffff" surfaceScale="1">
+                    <feDistantLight azimuth="45" elevation="45" />
+                </feDiffuseLighting>
+            </filter>
+            <filter id="displacementMap">
+                <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" result="turbulence" />
+                <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="20" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <filter id="gaussianBlur">
+                <feGaussianBlur stdDeviation="3" />
+            </filter>
+        </defs>
+
+        <rect width="1024" height="1024" fill="url(#backgroundGradient)" filter="url(#colorMatrix)" />
+
+        <circle id="centerCircle" cx="512" cy="512" r="100" fill="url(#gradient1)" filter="url(#blend)">
+            <title>Planète centrale avec feBlend</title>
+        </circle>
+        <text x="522" y="522" fill="#fff">Traffic Services </text>
+
+        <g id="orbitGroup">
+            <script>
+                var orbitGroup = document.getElementById('orbitGroup');
+                var circleCount = 8; // Number of circles
+                var radius = 400; // Radius of the orbit
+                for (var i = 0; i < circleCount; i++) {
+                    var angle = (i / circleCount) * Math.PI * 2;
+                    var cx = 512 + radius * Math.cos(angle);
+                    var cy = 512 + radius * Math.sin(angle);
+                    var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                    circle.setAttribute('cx', cx);
+                    circle.setAttribute('cy', cy);
+                    circle.setAttribute('r', 80); // Adjust the radius of the circles as needed
+                    circle.setAttribute('fill', 'white'); // Set circle color to white
+                    circle.setAttribute('filter', 'url(#colorMatrix)');
+                    circle.addEventListener('touchstart', function(event) {
+                        this.setAttribute('r', 100); // Increase circle size on touch
+                        var text = this.nextSibling;
+                        text.setAttribute('font-size', '16px'); // Increase text size on touch
+                        text.setAttribute('y', parseFloat(text.getAttribute('y')) - 7); // Adjust vertical position of text
+                    });
+                    circle.addEventListener('touchend', function(event) {
+                        this.setAttribute('r', 80); // Restore circle size when touch ends
+                        var text = this.nextSibling;
+                        text.setAttribute('font-size', '12px'); // Restore text size when touch ends
+                        text.setAttribute('y', parseFloat(text.getAttribute('y')) + 7); // Restore vertical position of text
+                    });
+                    var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                    text.setAttribute('x', cx);
+                    text.setAttribute('y', cy + 5); // Adjust vertical position of text inside circle
+                    text.setAttribute('fill', 'black'); // Set text color to black
+                    text.setAttribute('font-size', '12px'); // Set text font size
+                    text.setAttribute('text-anchor', 'middle'); // Center text horizontally
+                    text.textContent = 'Text' + (i + 1); // Example text content
+                    orbitGroup.appendChild(circle);
+                    orbitGroup.appendChild(text);
+                }
+							
+							
+							
+							var orbitGroup = document.getElementById('orbitGroup');
+    var circleCount = 8; // Number of circles
+    var radius = 400; // Radius of the orbit
+    for (var i = 0; i < circleCount; i++) {
+        var angle = (i / circleCount) * Math.PI * 2;
+        var cx = 512 + radius * Math.cos(angle);
+        var cy = 512 + radius * Math.sin(angle);
+        var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute('cx', cx);
+        circle.setAttribute('cy', cy);
+        circle.setAttribute('r', 80); // Adjust the radius of the circles as needed
+        circle.setAttribute('fill', 'white'); // Set circle color to white
+        circle.setAttribute('filter', 'url(#colorMatrix)');
+
+        circle.addEventListener('touchstart', function(event) {
+            this.setAttribute('r', 100); // Increase circle size on touch
+            var text = this.nextSibling;
+            text.setAttribute('font-size', '16px'); // Increase text size on touch
+            text.setAttribute('y', parseFloat(text.getAttribute('y')) - 7); // Adjust vertical position of text
+        });
+
+        circle.addEventListener('touchend', function(event) {
+            this.setAttribute('r', 80); // Restore circle size when touch ends
+            var text = this.nextSibling;
+            text.setAttribute('font-size', '12px'); // Restore text size when touch ends
+            text.setAttribute('y', parseFloat(text.getAttribute('y')) + 7); // Restore vertical position of text
+        });
+
+        var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        text.setAttribute('x', cx);
+        text.setAttribute('y', cy + 5); // Adjust vertical position of text inside circle
+        text.setAttribute('fill', 'black'); // Set text color to black
+        text.setAttribute('font-size', '12px'); // Set text font size
+        text.setAttribute('text-anchor', 'middle'); // Center text horizontally
+        text.textContent = 'Service' + (i + 1); // Example text content
+			
+        orbitGroup.appendChild(circle);
+        orbitGroup.appendChild(text);
+    }
+            </script>
+        </g>
+    </svg>
+    <script src="service.js"></script>
+</body>
+
+</html>

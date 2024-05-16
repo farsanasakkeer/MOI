@@ -1,0 +1,147 @@
+
+body {
+	height: 100%;
+	margin: 0;
+	background: radial-gradient(
+		circle,
+		rgba(10, 22, 40, 1) 0%,
+		rgba(5, 5, 20, 1) 100%
+	);
+	overflow: hidden;
+	font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+svg {
+	display: block;
+	margin: auto;
+	max-width: 100%;
+	max-height: 100vh;
+}
+
+
+.star {
+	animation: twinkling 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes twinkling {
+	0%,
+	100% {
+		fill: #fff;
+	}
+	50% {
+		fill: #000;
+	}
+}
+
+
+circle {
+	cursor: pointer;
+	transition: transform 0.5s ease-in-out, filter 0.5s ease-in-out;
+}
+
+circle:hover {
+	transform: scale(1.15);
+	filter: brightness(1.3) contrast(120%);
+}
+
+
+text {
+	fill: #ffffff;
+	text-anchor: middle;
+	dominant-baseline: middle;
+	font-size: 14px;
+	pointer-events: none;
+	transition: fill 0.5s ease;
+}
+
+text:hover {
+	fill: #ffd700;
+}
+
+
+#blur feGaussianBlur {
+	animation: pulsateBlur 8s infinite alternate;
+}
+
+@keyframes pulsateBlur {
+	0%,
+	100% {
+		stddeviation: 2;
+	}
+	50% {
+		stddeviation: 5;
+	}
+}
+
+#dropShadow feDropShadow {
+	dx: 5;
+	dy: 5;
+	stddeviation: 10;
+	flood-color: rgba(0, 0, 0, 0.5);
+}
+
+#specularLighting feSpecularLighting {
+	specularexponent: 10;
+	lighting-color: #ffffff;
+}
+
+#turbulence feTurbulence {
+	numoctaves: 3;
+	type: "fractalNoise";
+	animation: turbulenceEffect 20s infinite;
+}
+
+@keyframes turbulenceEffect {
+	0%,
+	100% {
+		basefrequency: 0.01;
+	}
+	50% {
+		basefrequency: 0.1;
+	}
+}
+
+#colorMatrix feColorMatrix {
+	type: "matrix";
+	values: "0.33 0 0 0 0  0.33 0.33 0 0 0  0.33 0.33 0.33 0 0  0 0 0 1 0";
+}
+
+
+defs radialGradient {
+	animation: gradientShift 12s infinite alternate;
+}
+
+@keyframes gradientShift {
+	0%,
+	100% {
+		stop-color: #444;
+	}
+	50% {
+		stop-color: #fff;
+	}
+}
+
+
+ellipse {
+	fill: none;
+	stroke: #fff;
+	stroke-width: 2;
+	filter: url(#specularLighting);
+}
+
+path {
+	stroke: #f28e2c;
+	stroke-width: 5;
+	filter: url(#blur);
+}
+
+rect {
+	fill-opacity: 0.3;
+}
+
+
+@media (max-width: 768px) {
+	text {
+		font-size: 10px;
+	}
+}

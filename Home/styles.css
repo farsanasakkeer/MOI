@@ -1,0 +1,205 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iphone-container {
+    position: relative;
+    width: 390px;
+    height: 844px;
+    background: linear-gradient(135deg, #2596be, #143f84, #39679b, #163877);
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 36px;
+}
+
+.big-circle {
+    position: absolute;
+    top: calc(50% - 125px);
+    left: calc(50% - 125px);
+    width: 250px;
+    height: 250px;
+    border: 2px solid black;
+    border-radius: 50%;
+}
+
+.small-circle {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: white;
+    transition: transform 0.3s ease;
+}
+
+.small-circle img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.label {
+    display: none;
+    position: absolute;
+    top: calc(50% + 35px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.small-circle:hover .label {
+    display: block;
+}
+
+.small-circle:hover img {
+    transform: scale(1.1);
+}
+
+.footer {
+    width: 100%;
+    background-color: #163877;
+    padding: 5px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+   width: 390px;
+    margin-left: calc(50% - 195px);
+   
+}
+
+.footer-button-grid {
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-button {
+    padding: 15px;
+    margin: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.footer-button img {
+    width: 20px;
+    height: 20px;
+}
+
+.footer-button:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.icons {
+    display: flex;
+}
+
+.icon-button img {
+    width: 30px;
+    height: 30px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+}
+
+.icon-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 20px;
+    margin: 5 5px;
+    border-radius: 50%;
+}
+
+.search-bar {
+    
+    padding: 10px;
+    flex-grow: 1;
+    margin: 0 20px;
+    text-align: center;
+    display: block;
+    padding-bottom: 0.5cm;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+.emergency {
+    display: flex;
+    align-items: center;
+}
+
+.pulse-icon img {
+    margin-right: 10px;
+}
+
+.call-icon {
+    margin-right: 10px;
+    
+
+}
+
+.call-icon img {
+    width: 32px;
+    height: 32px;
+}
+
+.notification {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.avatar {
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 10px;
+}
+
+.avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+}
