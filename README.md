@@ -1,5 +1,3 @@
-# MOI
-
 
 # MOI UAE App Prototype 
 
